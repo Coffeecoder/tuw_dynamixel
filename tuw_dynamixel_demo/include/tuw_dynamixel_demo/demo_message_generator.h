@@ -11,6 +11,7 @@ class DemoMessageGenerator
 {
 public:
   virtual trajectory_msgs::JointTrajectory generateDemoMessage() = 0;
+  virtual trajectory_msgs::JointTrajectory generateDemoMessage(const std::string yaml_file_string) = 0;
 private:
 
 };

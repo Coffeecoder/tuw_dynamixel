@@ -17,6 +17,7 @@ class DemoMessageGeneratorJoint : public DemoMessageGenerator
 {
 public:
   trajectory_msgs::JointTrajectory generateDemoMessage();
+  trajectory_msgs::JointTrajectory generateDemoMessage(const std::string yaml_file_string);
 protected:
   JointMode joint_mode_;
 };

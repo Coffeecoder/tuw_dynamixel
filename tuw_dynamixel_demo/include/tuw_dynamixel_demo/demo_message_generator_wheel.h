@@ -16,6 +16,7 @@ class DemoMessageGeneratorWheel : public DemoMessageGenerator
 {
 public:
   trajectory_msgs::JointTrajectory generateDemoMessage();
+  trajectory_msgs::JointTrajectory generateDemoMessage(const std::string yaml_file_string);
 private:
   WheelMode wheel_mode_;
 };
