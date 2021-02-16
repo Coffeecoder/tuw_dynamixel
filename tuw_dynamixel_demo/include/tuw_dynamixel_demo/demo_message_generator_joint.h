@@ -7,17 +7,16 @@
 
 namespace tuw_dynamixel
 {
+class DemoMessageGeneratorJoint : public DemoMessageGenerator
+{
 enum class JointMode
 {
   movingLeft,
   movingRight,
 };
-
-class DemoMessageGeneratorJoint : public DemoMessageGenerator
-{
 public:
-  trajectory_msgs::JointTrajectory generateDemoMessage();
-  trajectory_msgs::JointTrajectory generateDemoMessage(const std::string yaml_file_string);
+  trajectory_msgs::JointTrajectory generateDemoMessage(const std::string actuator_name);
+  trajectory_msgs::JointTrajectory generateDemoMessage(const YAML::Node yaml_node);
 protected:
   JointMode joint_mode_;
 };

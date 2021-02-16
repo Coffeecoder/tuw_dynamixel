@@ -2,13 +2,13 @@
 
 #include "../include/tuw_dynamixel_demo/demo_message_generator_wheel.h"
 
-trajectory_msgs::JointTrajectory tuw_dynamixel::DemoMessageGeneratorWheel::generateDemoMessage()
+trajectory_msgs::JointTrajectory tuw_dynamixel::DemoMessageGeneratorWheel::generateDemoMessage(const std::string actuator_name)
 {
   // TODO
   return trajectory_msgs::JointTrajectory();
 }
 
-trajectory_msgs::JointTrajectory  tuw_dynamixel::DemoMessageGeneratorWheel::generateDemoMessage(const std::string yaml_file_string)
+trajectory_msgs::JointTrajectory  tuw_dynamixel::DemoMessageGeneratorWheel::generateDemoMessage(const YAML::Node yaml_node)
 {
   // TODO
   return trajectory_msgs::JointTrajectory();

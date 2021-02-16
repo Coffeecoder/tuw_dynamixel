@@ -15,8 +15,8 @@ enum class WheelMode
 class DemoMessageGeneratorWheel : public DemoMessageGenerator
 {
 public:
-  trajectory_msgs::JointTrajectory generateDemoMessage();
-  trajectory_msgs::JointTrajectory generateDemoMessage(const std::string yaml_file_string);
+  trajectory_msgs::JointTrajectory generateDemoMessage(const std::string actuator_name);
+  trajectory_msgs::JointTrajectory generateDemoMessage(const YAML::Node yaml_node);
 private:
   WheelMode wheel_mode_;
 };
