@@ -5,14 +5,15 @@
 
 #include <trajectory_msgs/JointTrajectory.h>
 #include <yaml-cpp/yaml.h>
+#include <memory>
 
 namespace tuw_dynamixel
 {
 class DemoMessageGenerator
 {
 public:
-  virtual trajectory_msgs::JointTrajectory generateDemoMessage(const std::string actuator_name) = 0;
-  virtual trajectory_msgs::JointTrajectory generateDemoMessage(const YAML::Node yaml_node) = 0;
+  virtual std::shared_ptr<trajectory_msgs::JointTrajectory> generateDemoMessage(const std::string actuator_name) = 0;
+  virtual std::shared_ptr<trajectory_msgs::JointTrajectory> generateDemoMessage(const YAML::Node yaml_node) = 0;
 private:
 
 };

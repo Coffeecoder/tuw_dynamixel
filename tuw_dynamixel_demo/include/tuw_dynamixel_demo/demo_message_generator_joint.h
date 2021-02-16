@@ -15,8 +15,8 @@ enum class JointMode
   movingRight,
 };
 public:
-  trajectory_msgs::JointTrajectory generateDemoMessage(const std::string actuator_name);
-  trajectory_msgs::JointTrajectory generateDemoMessage(const YAML::Node yaml_node);
+  std::shared_ptr<trajectory_msgs::JointTrajectory> generateDemoMessage(const std::string actuator_name);
+  std::shared_ptr<trajectory_msgs::JointTrajectory> generateDemoMessage(const YAML::Node yaml_node);
 protected:
   JointMode joint_mode_;
 };
