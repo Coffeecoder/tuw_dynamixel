@@ -12,10 +12,12 @@ namespace tuw_dynamixel
 class DemoMessageGenerator
 {
 public:
+  void set_message_execution_duration_in_seconds(double);
+  double get_message_execution_duration_in_seconds();
   virtual std::shared_ptr<trajectory_msgs::JointTrajectory> generateDemoMessage(const std::string actuator_name) = 0;
   virtual std::shared_ptr<trajectory_msgs::JointTrajectory> generateDemoMessage(const YAML::Node yaml_node) = 0;
-private:
-
+protected:
+  double message_execution_duration_in_seconds;
 };
 }
 

@@ -26,7 +26,7 @@ std::shared_ptr<trajectory_msgs::JointTrajectory> tuw_dynamixel::DemoMessageGene
 
   std::shared_ptr<trajectory_msgs::JointTrajectoryPoint> joint_trajectory_point_constant = std::make_shared<trajectory_msgs::JointTrajectoryPoint>();
   joint_trajectory_point_changing->accelerations.push_back(0.0);
-  joint_trajectory_point_changing->time_from_start.fromSec(3.0);
+  joint_trajectory_point_changing->time_from_start.fromSec(this->message_execution_duration_in_seconds / 2);
   joint_trajectory->points.push_back(*joint_trajectory_point_constant);
 
   return joint_trajectory;
