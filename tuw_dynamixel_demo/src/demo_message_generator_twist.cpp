@@ -10,23 +10,23 @@ std::shared_ptr<geometry_msgs::Twist> tuw_dynamixel::DemoMessageGeneratorTwist::
   std::shared_ptr<geometry_msgs::Twist> twist_message =
     std::make_shared<geometry_msgs::Twist>();
 
-  int acceleration_factor = 0;
-  if (wheel_mode_ != WheelMode::accelerating && wheel_mode_ != WheelMode::decelerating)
+  int orientation_factor = 0;
+  if (wheel_mode_ != WheelMode::clockwise && wheel_mode_ != WheelMode::counterClockwise)
   {
     throw std::runtime_error("invalid state");
   }
-  else if (wheel_mode_ == WheelMode::accelerating)
+  else if (wheel_mode_ == WheelMode::clockwise)
   {
-    acceleration_factor = 1;
-    wheel_mode_ = WheelMode::decelerating;
+    orientation_factor = -1;
+    wheel_mode_ = WheelMode::counterClockwise;
   }
-  else if (wheel_mode_ == WheelMode::decelerating)
+  else if (wheel_mode_ == WheelMode::counterClockwise)
   {
-    acceleration_factor = -1;
-    wheel_mode_ = WheelMode::accelerating;
+    orientation_factor =  1;
+    wheel_mode_ = WheelMode::clockwise;
   }
 
-  twist_message->linear.x = 0.25 + (acceleration_factor) * 0.25;
+  twist_message->linear.x = (orientation_factor) * 0.05;
   twist_message->linear.y = 0.00;
   twist_message->linear.z = 0.00;
 

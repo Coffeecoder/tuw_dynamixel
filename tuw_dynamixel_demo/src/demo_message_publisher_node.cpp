@@ -6,7 +6,7 @@
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "dynamixel_demo");
+  ros::init(argc, argv, "tuw_dynamixel_demo");
   ros::NodeHandle node_handle;
   ros::NodeHandle param_node_handle("~");
   std::string mode;

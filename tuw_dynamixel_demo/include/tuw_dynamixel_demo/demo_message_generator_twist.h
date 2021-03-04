@@ -12,8 +12,8 @@ namespace tuw_dynamixel
 {
 enum class WheelMode
 {
-  accelerating,
-  decelerating,
+  clockwise,
+  counterClockwise,
 };
 class DemoMessageGeneratorTwist : public DemoMessageGenerator
 {
