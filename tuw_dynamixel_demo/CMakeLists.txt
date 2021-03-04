@@ -4,6 +4,7 @@ project(tuw_dynamixel_demo)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   roslint
+  geometry_msgs
   trajectory_msgs
 )
 
