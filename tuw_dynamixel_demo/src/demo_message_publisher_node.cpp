@@ -1,9 +1,11 @@
 // Copyright 2021 Eugen Kaltenegger
 
+#include <memory>
 #include <string>
 #include "../include/tuw_dynamixel_demo/demo_message_publisher_node.h"
 
-int main (int argc, char **argv) {
+int main(int argc, char **argv)
+{
   ros::init(argc, argv, "dynamixel_demo");
   ros::NodeHandle node_handle;
   ros::NodeHandle param_node_handle("~");
@@ -24,7 +26,10 @@ int main (int argc, char **argv) {
   return 0;
 }
 
-void obtainParameterString(const ros::NodeHandle& node_handle, const std::string& parameter_name, std::string& parameter_field) {
+void obtainParameterString(
+  const ros::NodeHandle& node_handle,
+  const std::string& parameter_name, std::string& parameter_field)
+{
   if (node_handle.getParam(parameter_name, parameter_field))
   {
     ROS_INFO("obtain parameter %s: %s", parameter_name.c_str(), parameter_field.c_str());
@@ -35,7 +40,8 @@ void obtainParameterString(const ros::NodeHandle& node_handle, const std::string
   }
 }
 
-void obtainParameterInt(const ros::NodeHandle& node_handle, const std::string& parameter_name, int& parameter_field) {
+void obtainParameterInt(const ros::NodeHandle& node_handle, const std::string& parameter_name, int& parameter_field)
+{
   if (node_handle.getParam(parameter_name, parameter_field))
   {
     ROS_INFO("obtain parameter %s: %d", parameter_name.c_str(), parameter_field);
@@ -51,7 +57,8 @@ void DemoMessagePublisherNode:: init(
     const std::string& mode,
     const std::string& topic_name,
     const std::string& actuator_name,
-    int message_execution_duration) {
+    int message_execution_duration)
+{
   ROS_INFO("creating demo node: ");
   ROS_INFO("  mode: %s", mode.c_str());
   ROS_INFO("  topic: %s", topic_name.c_str());
@@ -76,6 +83,7 @@ void DemoMessagePublisherNode:: init(
   this->publisher_->init(this->node_handle_, this->topic_name_, this->actuator_name_, this->generator_);
 }
 
-void DemoMessagePublisherNode::start() {
+void DemoMessagePublisherNode::start()
+{
   this->publisher_->start();
 }
