@@ -12,18 +12,18 @@ namespace tuw_dynamixel
 class DemoMessagePublisher
 {
 public:
-  ros::NodeHandle node_handle_;
-  std::string topic_name_;
-  std::string actuator_name_;
-  tuw_dynamixel::DemoMessageGenerator& message_generator_;
   void init(
     const ros::NodeHandle& node_handle,
     const std::string& topic_name,
     const std::string& actuator_name,
-    const tuw_dynamixel::DemoMessageGenerator& demo_message_generator);
+    std::shared_ptr<tuw_dynamixel::DemoMessageGenerator> demo_message_generator);
   void start();
 private:
-  std::shared_ptr<ros::Publisher> publisher;
+  ros::NodeHandle node_handle_;
+  std::string topic_name_;
+  std::string actuator_name_;
+  std::shared_ptr<tuw_dynamixel::DemoMessageGenerator> message_generator_;
+  std::shared_ptr<ros::Publisher> publisher_;
 };
 }
 

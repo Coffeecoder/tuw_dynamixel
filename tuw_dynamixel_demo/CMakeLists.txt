@@ -22,15 +22,24 @@ add_library(demo_message_generator
   src/demo_message_generator_joint.cpp
   src/demo_message_generator_wheel.cpp
 )
+
 target_link_libraries(demo_message_generator
   ${catkin_LIBRARIES}
 )
 
-add_executable(demo_message_publisher
+add_library(demo_message_publisher
   src/demo_message_publisher.cpp
-  src/demo_message_publisher_main.cpp
 )
+
 target_link_libraries(demo_message_publisher
-        demo_message_generator
-        ${catkin_LIBRARIES}
+  ${catkin_LIBRAIES}
+)
+
+add_executable(demo_message_publisher_node
+  src/demo_message_publisher_node.cpp
+)
+target_link_libraries(demo_message_publisher_node
+  demo_message_generator
+  demo_message_publisher
+  ${catkin_LIBRARIES}
 )
