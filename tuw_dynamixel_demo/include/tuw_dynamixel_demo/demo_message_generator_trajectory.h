@@ -1,16 +1,17 @@
 // Copyright 2021 Eugen Kaltenegger
 
-#ifndef TUW_DYNAMIXEL_DEMO_DEMO_MESSAGE_GENERATOR_JOINT_H
-#define TUW_DYNAMIXEL_DEMO_DEMO_MESSAGE_GENERATOR_JOINT_H
+#ifndef TUW_DYNAMIXEL_DEMO_DEMO_MESSAGE_GENERATOR_TRAJECTORY_H
+#define TUW_DYNAMIXEL_DEMO_DEMO_MESSAGE_GENERATOR_TRAJECTORY_H
 
 #include <cmath>
 #include <memory>
 #include <string>
+#include <trajectory_msgs/JointTrajectory.h>
 #include "./demo_message_generator.h"
 
 namespace tuw_dynamixel
 {
-class DemoMessageGeneratorJoint : public DemoMessageGenerator
+class DemoMessageGeneratorTrajectory : public DemoMessageGenerator
 {
 enum class JointMode
 {
@@ -27,4 +28,4 @@ private:
 };
 }  // namespace tuw_dynamixel
 
-#endif  // TUW_DYNAMIXEL_DEMO_DEMO_MESSAGE_GENERATOR_JOINT_H
+#endif  // TUW_DYNAMIXEL_DEMO_DEMO_MESSAGE_GENERATOR_TRAJECTORY_H

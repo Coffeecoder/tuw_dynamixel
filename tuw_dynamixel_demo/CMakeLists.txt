@@ -20,8 +20,8 @@ roslint_cpp()
 
 add_library(demo_message_generator
   src/demo_message_generator.cpp
-  src/demo_message_generator_joint.cpp
-  src/demo_message_generator_wheel.cpp
+        src/demo_message_generator_trajectory.cpp
+        src/demo_message_generator_twist.cpp
 )
 
 target_link_libraries(demo_message_generator

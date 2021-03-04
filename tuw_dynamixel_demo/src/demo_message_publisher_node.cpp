@@ -72,15 +72,20 @@ void DemoMessagePublisherNode:: init(
 
   if (this->mode_ == "joint")
   {
-    this->generator_ = std::make_shared<tuw_dynamixel::DemoMessageGeneratorJoint>();
+    this->generator_ = std::make_shared<tuw_dynamixel::DemoMessageGeneratorTrajectory>();
   }
   if (this->mode_ == "wheel")
   {
-    this->generator_ = std::make_shared<tuw_dynamixel::DemoMessageGeneratorWheel>();
+    this->generator_ = std::make_shared<tuw_dynamixel::DemoMessageGeneratorTwist>();
   }
   this->generator_->set_message_execution_duration_in_seconds(this->message_execution_duration_);
   this->publisher_ = std::make_shared<tuw_dynamixel::DemoMessagePublisher>();
-  this->publisher_->init(this->node_handle_, this->topic_name_, this->actuator_name_, this->generator_);
+  this->publisher_->init(
+    this->node_handle_,
+    this->mode_,
+    this->topic_name_,
+    this->actuator_name_,
+    this->message_execution_duration_);
 }
 
 void DemoMessagePublisherNode::start()

@@ -6,8 +6,8 @@
 #include <ros/ros.h>
 #include <memory>
 #include <string>
-#include "./demo_message_generator_joint.h"
-#include "./demo_message_generator_wheel.h"
+#include "./demo_message_generator_trajectory.h"
+#include "./demo_message_generator_twist.h"
 #include "./demo_message_publisher.h"
 
 void obtainParameterString(

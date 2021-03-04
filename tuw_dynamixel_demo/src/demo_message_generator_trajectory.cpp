@@ -4,15 +4,15 @@
 #include <memory>
 #include <ros/ros.h>
 #include <string>
-#include "../include/tuw_dynamixel_demo/demo_message_generator_joint.h"
+#include "../include/tuw_dynamixel_demo/demo_message_generator_trajectory.h"
 
-std::shared_ptr<trajectory_msgs::JointTrajectory> tuw_dynamixel::DemoMessageGeneratorJoint::generateDemoMessage(
+std::shared_ptr<trajectory_msgs::JointTrajectory> tuw_dynamixel::DemoMessageGeneratorTrajectory::generateDemoMessage(
   const std::string actuator_name)
 {
-  std::shared_ptr<trajectory_msgs::JointTrajectory> joint_trajectory =
+  std::shared_ptr<trajectory_msgs::JointTrajectory> trajectory_message =
     std::make_shared<trajectory_msgs::JointTrajectory>();
 
-  joint_trajectory->joint_names.push_back(actuator_name);
+  trajectory_message->joint_names.push_back(actuator_name);
 
   int direction_modifier = 0;
   double start_position = 0;
@@ -41,13 +41,13 @@ std::shared_ptr<trajectory_msgs::JointTrajectory> tuw_dynamixel::DemoMessageGene
       std::make_shared<trajectory_msgs::JointTrajectoryPoint>();
     joint_trajectory_point->positions.push_back(start_position + (i * M_PI * direction_modifier * 0.25));
     joint_trajectory_point->time_from_start.fromSec(i * this->message_execution_duration_in_seconds / 3);
-    joint_trajectory->points.push_back(*joint_trajectory_point);
+    trajectory_message->points.push_back(*joint_trajectory_point);
   }
 
-  return joint_trajectory;
+  return trajectory_message;
 }
 
-std::shared_ptr<trajectory_msgs::JointTrajectory>  tuw_dynamixel::DemoMessageGeneratorJoint::generateDemoMessage(
+std::shared_ptr<trajectory_msgs::JointTrajectory>  tuw_dynamixel::DemoMessageGeneratorTrajectory::generateDemoMessage(
   const YAML::Node yaml_node)
 {
   // TODO(eugen) implement
