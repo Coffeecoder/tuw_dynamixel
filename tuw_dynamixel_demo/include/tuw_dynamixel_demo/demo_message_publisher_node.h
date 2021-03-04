@@ -1,12 +1,14 @@
 // Copyright 2021 Eugen Kaltenegger
 
-#ifndef DYNAMIXEL_WS_DEMO_MESSAGE_PUBLISHER_NODE_H
-#define DYNAMIXEL_WS_DEMO_MESSAGE_PUBLISHER_NODE_H
+#ifndef TUW_DYNAMIXEL_DEMO_DEMO_MESSAGE_PUBLISHER_NODE_H
+#define TUW_DYNAMIXEL_DEMO_DEMO_MESSAGE_PUBLISHER_NODE_H
 
 #include <ros/ros.h>
-#include "demo_message_generator_joint.h"
-#include "demo_message_generator_wheel.h"
-#include "demo_message_publisher.h"
+#include <memory>
+#include <string>
+#include "./demo_message_generator_joint.h"
+#include "./demo_message_generator_wheel.h"
+#include "./demo_message_publisher.h"
 
 void obtainParameterString(const ros::NodeHandle& node_handle, const std::string& parameter_name, std::string& parameter_field);
 void obtainParameterInt(const ros::NodeHandle& node_handle, const std::string& parameter_name, int& parameter_field);
@@ -31,4 +33,4 @@ private:
   std::shared_ptr<tuw_dynamixel::DemoMessagePublisher> publisher_;
 };
 
-#endif //DYNAMIXEL_WS_DEMO_MESSAGE_PUBLISHER_NODE_H
+#endif  // TUW_DYNAMIXEL_DEMO_DEMO_MESSAGE_PUBLISHER_NODE_H

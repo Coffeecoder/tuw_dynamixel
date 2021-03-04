@@ -1,11 +1,12 @@
 // Copyright 2021 Eugen Kaltenegger
 
-#ifndef DYNAMIXEL_WS_DEMO_MESSAGE_PUBLISHER_H
-#define DYNAMIXEL_WS_DEMO_MESSAGE_PUBLISHER_H
+#ifndef TUW_DYNAMIXEL_DEMO_DEMO_MESSAGE_PUBLISHER_H
+#define TUW_DYNAMIXEL_DEMO_DEMO_MESSAGE_PUBLISHER_H
 
 #include <ros/ros.h>
 #include <memory>
-#include "demo_message_generator.h"
+#include <string>
+#include "./demo_message_generator.h"
 
 namespace tuw_dynamixel
 {
@@ -25,6 +26,6 @@ private:
   std::shared_ptr<tuw_dynamixel::DemoMessageGenerator> message_generator_;
   std::shared_ptr<ros::Publisher> publisher_;
 };
-}
+}  // namespace tuw_dynamixel
 
-#endif //DYNAMIXEL_WS_DEMO_MESSAGE_PUBLISHER_H
+#endif  // TUW_DYNAMIXEL_DEMO_DEMO_MESSAGE_PUBLISHER_H
