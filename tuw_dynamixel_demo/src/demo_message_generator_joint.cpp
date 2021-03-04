@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include <memory>
+#include <ros/ros.h>
 #include <string>
 #include "../include/tuw_dynamixel_demo/demo_message_generator_joint.h"
 
@@ -14,22 +15,31 @@ std::shared_ptr<trajectory_msgs::JointTrajectory> tuw_dynamixel::DemoMessageGene
   joint_trajectory->joint_names.push_back(actuator_name);
 
   int direction_modifier = 0;
-  if (joint_mode_ == JointMode::movingLeft)
+  double start_position = 0;
+  if (this->joint_mode_ != JointMode::turningClockwise && this->joint_mode_ != JointMode::turningCounterClockwise)
   {
-    direction_modifier = 1;
-    joint_mode_ = JointMode::movingRight;
+    throw std::runtime_error("invalid state");
   }
-  if (joint_mode_ == JointMode::movingRight)
+  else if (joint_mode_ == JointMode::turningClockwise)
   {
+    ROS_DEBUG("turning clockwise");
     direction_modifier = -1;
-    joint_mode_ = JointMode::movingLeft;
+    start_position =   ANGLE_RANGE / 2;
+    joint_mode_ = JointMode::turningCounterClockwise;
+  }
+  else if (joint_mode_ == JointMode::turningCounterClockwise)
+  {
+    ROS_DEBUG("turning counter-clockwise");
+    direction_modifier =  1;
+    start_position = - ANGLE_RANGE / 2;
+    joint_mode_ = JointMode::turningClockwise;
   }
 
   for (int i = 0; i < 3; ++i)
   {
     std::shared_ptr<trajectory_msgs::JointTrajectoryPoint> joint_trajectory_point =
       std::make_shared<trajectory_msgs::JointTrajectoryPoint>();
-    joint_trajectory_point->positions.push_back(i * M_PI * direction_modifier * 0.25);
+    joint_trajectory_point->positions.push_back(start_position + (i * M_PI * direction_modifier * 0.25));
     joint_trajectory_point->time_from_start.fromSec(i * this->message_execution_duration_in_seconds / 3);
     joint_trajectory->points.push_back(*joint_trajectory_point);
   }
