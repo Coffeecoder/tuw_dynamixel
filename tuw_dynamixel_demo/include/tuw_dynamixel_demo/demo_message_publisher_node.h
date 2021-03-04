@@ -10,10 +10,14 @@
 #include "./demo_message_generator_wheel.h"
 #include "./demo_message_publisher.h"
 
-void obtainParameterString(const ros::NodeHandle& node_handle, const std::string& parameter_name, std::string& parameter_field);
+void obtainParameterString(
+  const ros::NodeHandle& node_handle,
+  const std::string& parameter_name,
+  std::string& parameter_field);
 void obtainParameterInt(const ros::NodeHandle& node_handle, const std::string& parameter_name, int& parameter_field);
 
-class DemoMessagePublisherNode {
+class DemoMessagePublisherNode
+{
 public:
   void init(
     const ros::NodeHandle &node_handle,
