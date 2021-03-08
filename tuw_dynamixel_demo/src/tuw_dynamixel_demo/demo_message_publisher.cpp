@@ -50,7 +50,6 @@ void tuw_dynamixel::DemoMessagePublisher::init(
     ros::Rate loop_rate(100);
     loop_rate.sleep();
   }
-
 }
 
 void tuw_dynamixel::DemoMessagePublisher::start()
