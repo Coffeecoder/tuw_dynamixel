@@ -2,7 +2,7 @@
 
 #include <memory>
 #include <string>
-#include "../include/tuw_dynamixel_demo/demo_message_generator_twist.h"
+#include "tuw_dynamixel_demo/demo_message_generator_twist.h"
 
 std::shared_ptr<geometry_msgs::Twist> tuw_dynamixel::DemoMessageGeneratorTwist::generateDemoMessage(
   const std::string actuator_name)

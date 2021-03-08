@@ -1,6 +1,6 @@
 // Copyright 2021 Eugen Kaltenegger
 
-#include "../include/tuw_dynamixel_demo/demo_message_generator.h"
+#include "tuw_dynamixel_demo/demo_message_generator.h"
 
 void tuw_dynamixel::DemoMessageGenerator::set_message_execution_duration_in_seconds(double duration_in_seconds)
 {

@@ -4,7 +4,7 @@
 #include <memory>
 #include <ros/ros.h>
 #include <string>
-#include "../include/tuw_dynamixel_demo/demo_message_generator_trajectory.h"
+#include "tuw_dynamixel_demo/demo_message_generator_trajectory.h"
 
 std::shared_ptr<trajectory_msgs::JointTrajectory> tuw_dynamixel::DemoMessageGeneratorTrajectory::generateDemoMessage(
   const std::string actuator_name)

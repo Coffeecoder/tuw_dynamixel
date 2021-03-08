@@ -2,7 +2,7 @@
 
 #include <memory>
 #include <string>
-#include "../include/tuw_dynamixel_demo/demo_message_publisher_node.h"
+#include "tuw_dynamixel_demo/demo_message_publisher_node.h"
 
 int main(int argc, char **argv)
 {

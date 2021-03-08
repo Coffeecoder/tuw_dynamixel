@@ -19,9 +19,9 @@ include_directories(
 roslint_cpp()
 
 add_library(demo_message_generator
-  src/demo_message_generator.cpp
-        src/demo_message_generator_trajectory.cpp
-        src/demo_message_generator_twist.cpp
+        src/tuw_dynamixel_demo/demo_message_generator.cpp
+        src/tuw_dynamixel_demo/demo_message_generator_trajectory.cpp
+        src/tuw_dynamixel_demo/demo_message_generator_twist.cpp
 )
 
 target_link_libraries(demo_message_generator
@@ -29,7 +29,7 @@ target_link_libraries(demo_message_generator
 )
 
 add_library(demo_message_publisher
-  src/demo_message_publisher.cpp
+        src/tuw_dynamixel_demo/demo_message_publisher.cpp
 )
 
 target_link_libraries(demo_message_publisher
@@ -37,7 +37,7 @@ target_link_libraries(demo_message_publisher
 )
 
 add_executable(demo_message_publisher_node
-  src/demo_message_publisher_node.cpp
+        src/tuw_dynamixel_demo/demo_message_publisher_node.cpp
 )
 target_link_libraries(demo_message_publisher_node
   demo_message_generator

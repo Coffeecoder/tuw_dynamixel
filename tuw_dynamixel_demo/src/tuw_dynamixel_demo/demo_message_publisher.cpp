@@ -3,7 +3,7 @@
 #include <memory>
 #include <string>
 #include <trajectory_msgs/JointTrajectory.h>
-#include "../include/tuw_dynamixel_demo/demo_message_publisher.h"
+#include "tuw_dynamixel_demo/demo_message_publisher.h"
 
 void tuw_dynamixel::DemoMessagePublisher::init(
     const ros::NodeHandle& node_handle,
