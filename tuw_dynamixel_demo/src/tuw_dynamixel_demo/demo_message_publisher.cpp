@@ -39,6 +39,18 @@ void tuw_dynamixel::DemoMessagePublisher::init(
     this->publisher_ = std::make_shared<ros::Publisher>
       (this->node_handle_.advertise<geometry_msgs::Twist>(this->topic_name_, 100));
   }
+
+  for (int loop_counter = 0; this->publisher_->getNumSubscribers() < 1; ++loop_counter)
+  {
+    if (loop_counter % 100 == 0)
+    {
+      ROS_INFO("no subscribers for this publisher jet, waiting for subscribers ...");
+    }
+
+    ros::Rate loop_rate(100);
+    loop_rate.sleep();
+  }
+
 }
 
 void tuw_dynamixel::DemoMessagePublisher::start()
@@ -48,7 +60,7 @@ void tuw_dynamixel::DemoMessagePublisher::start()
   ros::Rate loop_rate(1.00 / this->message_execution_duration_);
   while (ros::ok() && message_counter < 100)
   {
-    ROS_INFO("published %3d demo message", message_counter++);
+    ROS_INFO("published %3d demo message", message_counter);
 
     if (this->mode_ != Mode::joint && this->mode_ != Mode::wheel)
     {
@@ -69,5 +81,6 @@ void tuw_dynamixel::DemoMessagePublisher::start()
 
     ros::spinOnce();
     loop_rate.sleep();
+    message_counter++;
   }
 }
