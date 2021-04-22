@@ -1,4 +1,92 @@
 #!/usr/bin/env python
 
+import rospy
+
+from tuw_nav_msgs.msg import JointsIWS
+from trajectory_msgs.msg import JointTrajectory
+from trajectory_msgs.msg import JointTrajectoryPoint
+from sensor_msgs.msg import JointState
+
+
 class MotorControllerNode:
-    pass
+    def __init__(self):
+        self._subscriber_topic_state = 'iwos_revolute_state'
+        self._subscriber_topic_command = 'iwos_cmd'
+        self._publisher_topic_command = 'iwos_revolute_cmd'
+
+        self._port = None
+        self._subscriber_state = None
+        self._subscriber_command = None
+        self._publisher_command = None
+
+        self._joint_names = {'left': None, 'right': None}
+        self._joint_effort = 1
+
+    def run(self):
+        rospy.init_node('tuw_dynamixel_iwos_controller')
+
+        self._port = rospy.get_param(param_name='~usb_port_revolute', default='/dev/ttyACM0')
+
+        self._subscriber_state = rospy.Subscriber(
+            name=self._subscriber_topic_state,
+            data_class=JointState,
+            callback=self.callback_state,
+            queue_size=1
+        )
+        self._subscriber_command = rospy.Subscriber(
+            name=self._subscriber_topic_command,
+            data_class=JointsIWS,
+            callback=self.callback_translator,
+            queue_size=1
+        )
+        self._publisher_command = rospy.Publisher(
+            name=self._publisher_topic_command,
+            data_class=JointTrajectory,
+            queue_size=1
+        )
+        rospy.spin()
+
+    def callback_translator(self, message):
+        response = JointTrajectory()
+        rospy.loginfo(self._joint_names)
+        for index, value in enumerate(self._joint_names.values()):
+            if value is not None:
+                response.joint_names += [value]
+                response.points = [self.create_trajectory_point(message)]
+        self._publisher_command.publish(response)
+
+    def create_trajectory_point(self, message):
+        trajectory_point = JointTrajectoryPoint()
+        for index, value in enumerate(self._joint_names.values()):
+            rospy.logwarn(value)
+            if value is not None:
+                trajectory_point.positions += [message.revolute[index]]
+                trajectory_point.effort += [self._joint_effort]
+
+        trajectory_point.time_from_start = rospy.Duration.from_sec(0.1)
+        return trajectory_point
+
+    def callback_state(self, message):
+        for name in message.name:
+            name = str(name)
+            if name.__contains__('left') or name.__contains__('Left') or name.__contains__('LEFT'):
+                self._joint_names['left'] = name
+                rospy.loginfo("found left")
+            if name.__contains__('right') or name.__contains__('Right') or name.__contains__('RIGHT'):
+                self._joint_names['right'] = name
+                rospy.loginfo("found right")
+
+        if self._joint_names['left'] is None:
+            rospy.logwarn('expected one joint with substring \'left\' but is not provided')
+        if self._joint_names['right'] is None:
+            rospy.logwarn('expected one joint with substring \'right\' but is not provided')
+
+        if len(message.name) != 2:
+            rospy.logwarn('number of revolute joints is %d, but expected 2 (left_revolute, right_revolute)', len(message.name))
+
+        self._subscriber_state.unregister()
+
+
+if __name__ == '__main__':
+    motor_controller_node = MotorControllerNode()
+    motor_controller_node.run()

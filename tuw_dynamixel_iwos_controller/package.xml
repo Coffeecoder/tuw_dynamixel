@@ -2,10 +2,9 @@
 <package format="2">
   <name>tuw_dynamixel_iwos_controller</name>
   <version>0.0.0</version>
-  <description>Controller for IWOS robot dynamixel joints</description>
+  <description>Controller for IWOS robot dynamixel joints (MX106)</description>
 
-  <maintainer email="kangaroo@todo.todo">kangaroo</maintainer>
-
+  <maintainer email="eugen.kaltenegger@gmail.com">Eugen Kaltenegger</maintainer>
 
   <license>BSD</license>
 

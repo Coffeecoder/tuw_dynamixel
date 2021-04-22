@@ -12,6 +12,6 @@ catkin_python_setup()
 include_directories()
 
 catkin_install_python(PROGRAMS
-  src/tuw_dynamixel/tuw_dynamixel_iwos_controller
+  src/tuw_dynamixel_iwos_controller/motor_controller_node
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
